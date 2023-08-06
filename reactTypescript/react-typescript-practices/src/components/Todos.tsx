@@ -1,17 +1,15 @@
 import React from "react";
 
-// interface TodoListProps {
-//   items: { itemName: string; itemPrice: string }[];
-// }
-
-const Todos: React.FC<{ items: { itemName: string; itemPrice: string }[] }> = (
-  props
-) => {
+const Todos: React.FC<{
+  productList: { name: string; price: string }[];
+}> = (props) => {
   return (
-    <div className="">
-      {props.items.map((todo, id) => {
-        return <div key={id}>{todo.itemName}</div>;
-      })}
+    <div>
+      {props.productList.map((product, index) => (
+        <div key={index} className="text-white text-center text-xl">
+          {product.name}
+        </div>
+      ))}
     </div>
   );
 };

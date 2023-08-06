@@ -1,25 +1,24 @@
 import React, { useRef } from "react";
 
-const NewTodo: React.FC = () => {
+const NewTodo: React.FC<{ todoHandler: (text: string) => void }> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null);
+
   const handleSubmit = (ev: React.FormEvent) => {
     ev.preventDefault();
-    const input = inputRef.current?.value ?? false;
-    console.log(input);
+    const text = inputRef.current?.value ?? false;
+    props.todoHandler(text);
   };
   return (
-    <div>
-      <h1 className="mb-5 text-3xl font-bold">Enter Your Product</h1>
+    <div className="px-5 text-center">
       <form action="" onSubmit={(ev) => handleSubmit(ev)}>
         <input
           type="text"
-          placeholder="Enter your product "
-          className="w-full px-2 outline-none text-slate-600"
+          className="w-full py-1 px-2 outline-none"
+          placeholder="Enter the item"
           ref={inputRef}
         />
-
-        <button className="bg-indigo-800 py-1 px-3 mt-4 mb-5 rounded-lg">
-          ClickToADD
+        <button className="text-white bg-indigo-800 py-1 px-4 rounded-md  mb-5 mt-3">
+          ADD Item
         </button>
       </form>
     </div>
